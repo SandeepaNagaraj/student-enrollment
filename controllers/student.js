@@ -27,12 +27,12 @@ const createANewstudent =async(request,response)=>
                 response.status(500).json({message:error.message})
             }
 }
-const getAstudent =(getStudent,(request,response)=>{
+const getAstudent =(request,response)=>{
         //response.send(`Updating student with id ${request.params.id}`);
         response.status(200).json(response.student)
-    })
+    }
 
-const updateAstudent =(getStudent,async(request,response)=>
+const updateAstudent =(async(request,response)=>
 {
     //response.send(`updating student with id ${request.params.id}`)
     if(request.body.name!=null)
@@ -43,10 +43,6 @@ const updateAstudent =(getStudent,async(request,response)=>
     {
         response.student.enrolledDepartment=request.body.enrolledDepartment;
     }
-    if(request.body.enrollmentDate!=null)
-    {
-        response.student.enrollmentDate=request.body.enrollmentDate;
-    }
     try{
         const updatedStudent = await response.student.save();
         response.status(201).json(updatedStudent);
@@ -56,7 +52,7 @@ const updateAstudent =(getStudent,async(request,response)=>
     }
     
 })
-const deleteAstudent=(getStudent,async(request,response)=>
+const deleteAstudent=(async(request,response)=>
 {
     //response.send(`deleting student with id ${request.params.id}`)
     try{
